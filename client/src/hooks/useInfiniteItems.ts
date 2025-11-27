@@ -12,15 +12,17 @@ export function useInfiniteItems(side: SideEnum, refreshKey = 0) {
   const limit = 20;
 
   const loadPage = useCallback(
-    async (offset: number, searchValue = search) => {
+    async (offset: number, searchValue?: string) => {
       if (loading) return;
       setLoading(true);
       try {
+        const normalized = searchValue?.trim() || "";
+
         const res: GetItems = await apiGetItems({
           side,
           offset,
           limit,
-          search: searchValue || undefined,
+          search: normalized ? normalized : undefined,
         });
 
         if (offset === 0) {
@@ -37,24 +39,28 @@ export function useInfiniteItems(side: SideEnum, refreshKey = 0) {
         setLoading(false);
       }
     },
-    [loading, search, side]
+    [loading, side]
   );
 
   const reload = useCallback(
     (newSearch: string) => {
-      setSearch(newSearch);
-      loadPage(0, newSearch);
+      const normalized = newSearch.trim();
+      setSearch(normalized);
+      setItems([]);
+      setHasMore(true);
+      setTotal(0);
+      loadPage(0, normalized);
     },
     [loadPage]
   );
 
   const loadMore = useCallback(() => {
     if (!hasMore || loading) return;
-    loadPage(items.length);
-  }, [hasMore, loading, items.length, loadPage]);
+    loadPage(items.length, search);
+  }, [hasMore, loading, items.length, loadPage, search]);
 
   useEffect(() => {
-    loadPage(0);
+    loadPage(0, search);
   }, [side, refreshKey]);
 
   return {
