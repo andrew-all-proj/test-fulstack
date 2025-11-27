@@ -1,0 +1,115 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.panes {
+  display: flex;
+  gap: 16px;
+}
+
+.pane {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane h2 {
+  margin: 0 0 8px;
+}
+
+.pane-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.pane-controls input[type="text"],
+.pane-controls input[type="number"] {
+  flex: 1;
+  padding: 4px 8px;
+}
+
+.add-form {
+  display: flex;
+  gap: 4px;
+}
+
+.add-form button {
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.list {
+  flex: 1;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 4px;
+  background: #fafafa;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background: #f3f3f3;
+}
+
+.drag-handle {
+  cursor: grab;
+  margin-right: 4px;
+}
+
+.primary-btn,
+.danger-btn {
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: #007bff;
+  color: #fff;
+}
+
+.danger-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.loading,
+.end {
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  color: #777;
+}

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullstack-app
+  labels:
+    app: fullstack-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fullstack-app
+  template:
+    metadata:
+      labels:
+        app: fullstack-app
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/andrew-all-proj/test-fulstack/fullstack-app:master
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3009
+      imagePullSecrets:
+        - name: ghcr-cred
