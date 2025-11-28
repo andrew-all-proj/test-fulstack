@@ -67,10 +67,14 @@ const RightPane = ({ refreshKey, onDataChanged }: Props) => {
       setItems(current);
 
       try {
-        await apiOrder(current.map((i) => i.id));
+        const res = await apiOrder(current.map((i) => i.id));
+        if (!res.success) {
+          throw new Error(`Order update failed, expected ${res.count} items`);
+        }
       } catch (err) {
         console.error(err);
         alert("Ошибка при изменении порядка");
+        onDataChanged();
       }
     };
 
